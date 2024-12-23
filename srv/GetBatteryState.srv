@@ -1,0 +1,6 @@
+# Request part (empty if all we need is to "ask" for battery status)
+---
+
+# Response part
+float64 battery_percentage
+

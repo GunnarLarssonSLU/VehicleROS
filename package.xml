@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>my_vehicle</name>
+  <version>0.0.0</version>
+  <description>ROS 2 package for controlling a vehicle</description>
+
+  <maintainer email="gunnar.larsson@slu.se">Your Name</maintainer>
+  <member_of_group>rosidl_interface_packages</member_of_group>'
+  <license>Apache-2.0</license>
+
+  <!-- Build dependencies -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_auto</buildtool_depend>
+  <build_depend>rclcpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+
+ <!-- Add Qt dependency -->
+  <build_depend>qtbase5-dev</build_depend>
+  <exec_depend>qtbase5-dev</exec_depend>
+
+  <!-- If using custom services, also add: -->
+  <build_depend>rosidl_default_generators</build_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+
+  <!-- Execution dependencies -->
+  <exec_depend>rclcpp</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+
