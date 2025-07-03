@@ -53,6 +53,12 @@ target_link_libraries(my_vehicle_node my_vehicle_library)
 rosidl_get_typesupport_target(typesupport_target_name ${PROJECT_NAME} "rosidl_typesupport_cpp")
 target_link_libraries(my_vehicle_node ${typesupport_target_name})
 
+# ✅ Link generated service/message interfaces (modern method)
+rosidl_get_typesupport_target(cpp_typesupport_target ${PROJECT_NAME} "rosidl_typesupport_cpp")
+target_link_libraries(my_vehicle_library ${cpp_typesupport_target})
+
+
+
 # ✅ Install the library and executable
 install(TARGETS
   my_vehicle_library
@@ -60,7 +66,7 @@ install(TARGETS
   EXPORT my_vehicle_library
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
-  RUNTIME DESTINATION lib/${PROJECT_NAME}
+  RUNTIME DESTINATION lib
 )
 
 install(EXPORT
@@ -68,7 +74,11 @@ install(EXPORT
   NAMESPACE my_vehicle::
   DESTINATION lib/cmake/my_vehicle)
 
-install(DIRECTORY include/ DESTINATION include/)
+install(DIRECTORY include/my_vehicle
+  DESTINATION include
+  FILES_MATCHING PATTERN "*.hpp" PATTERN "*.h"
+)
+
 
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/rosidl_generator_cpp/
   DESTINATION include
