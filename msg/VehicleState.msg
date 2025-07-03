@@ -1,0 +1,25 @@
+uint8 fw_minor
+float64 roll
+float64 pitch
+float64 yaw
+float64 accel[3]
+float64 gyro[3]
+float64 mag[3]
+float64 px
+float64 py
+float64 speed
+float64 vin
+float64 temp_fet
+    mc_fault_code mc_fault;
+float64 px_gps
+float64 py_gps
+float64 ap_goal_px
+float64 ap_goal_py
+float64 ap_rad
+int32 ms_today
+int16 ap_route_left
+float64 px_uwb;
+float64 py_uwb;
+float64 accelList[3]
+float64 gyroList[3]
+float64 magList[3]

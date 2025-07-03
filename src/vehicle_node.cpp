@@ -33,7 +33,6 @@ VehicleNode::VehicleNode()
     hydraulics_sub_ = this->create_subscription<my_vehicle::msg::Hydraulics>(
         "hydraulics_cmd", 10,
         std::bind(&VehicleNode::onHydraulicsCmd, this, std::placeholders::_1));
-
         
   terminal_sub_ = create_subscription<std_msgs::msg::String>(
     "terminal_cmd",
@@ -171,7 +170,11 @@ void VehicleNode::onGetPosition(
   const std::shared_ptr<my_vehicle::srv::GetPosition::Request> /* request */,
   std::shared_ptr<my_vehicle::srv::GetPosition::Response> response)
 {
-  // TODO: Fill in the actual position. For now, just placeholders.
+
+    QByteArray data=standardMessageStart(120);
+    sendCommand(data);
+
+    // TODO: Fill in the actual position. For now, just placeholders.
   response->x = 0.0;
   response->y = 0.0;
   response->z = 0.0;
@@ -201,11 +204,6 @@ void VehicleNode::sendCommand(const QByteArray &data) {
 
         socket.write(data);
         socket.flush();
-
-  //      if (!socket.waitForBytesWritten(3000)) {
-  //          RCLCPP_ERROR(this->get_logger(), "Failed to send command");
-  //          return;
-  //      }
 
         if (!socket.waitForReadyRead(3000)) {
             RCLCPP_ERROR(this->get_logger(), "No response from carclient");
